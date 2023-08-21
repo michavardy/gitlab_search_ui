@@ -4,13 +4,15 @@
 
 
 Gitlab-Search is an internal  web application tool designed to search through gitlab projects and subgroups for keywords and regular expressions (regex) . This tool helps streamline the process of searching and analyzing codebases, enabling developers to efficiently locate specific patterns or function calls across projects and subgroups.
+
+
 ---
 ## ScreenShots
 
-![Loading](../public/loading.jpg)
+![Loading](loading.jpg)
 *Loading*
 
-![Loading](../public/results.jpg)
+![Loading](results.jpg)
 *Results*
 ## Features
 - search text over all of the gitlab projects
@@ -31,6 +33,9 @@ uvicorn fast.main:app --reload
 ```
 ---
 ## Production Environment Setup
+```bash
+docker run -t gitlab_search_ui
+```
 ---
 ## Usage
 - fill out search prompt table 
@@ -49,10 +54,14 @@ RESULTS_PER_PAGE=100
 ```
 ---
 ## Contributing
+
 Contributions are welcome! If you encounter any issues or have ideas for enhancements, please feel free to create a pull request or submit an issue.
+
 ---
 ## License
+
 This project is licensed under the MIT License.
+
 ---
 
 
