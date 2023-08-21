@@ -1,4 +1,5 @@
 # Gitlab-Search-ui
+
 ---
 ## Overview
 
@@ -9,10 +10,10 @@ Gitlab-Search is an internal  web application tool designed to search through gi
 ---
 ## ScreenShots
 
-![Loading](loading.jpg)
+![](eyes.gif)
 *Loading*
 
-![Loading](results.jpg)
+![](results.jpg)
 *Results*
 ## Features
 - search text over all of the gitlab projects
