@@ -11,9 +11,11 @@ Gitlab-Search is an internal  web application tool designed to search through gi
 ## ScreenShots
 
 ![](eyes.gif)
+
 *Loading*
 
 ![](results.jpg)
+
 *Results*
 ## Features
 - search text over all of the gitlab projects
