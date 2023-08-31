@@ -32,7 +32,7 @@ npm start
 ```
 ### Backend FastAPI server
 ```bash
-uvicorn fast.main:app --reload
+uvicorn backend.main:app --reload
 ```
 ---
 ## Production Environment Setup
@@ -67,4 +67,12 @@ This project is licensed under the MIT License.
 
 ---
 
+
+## Useful Commands
+
+```bash
+docker build -t ui .
+docker run -it <docker-image-id> sh
+docker run -dp 80:80 <docker-image-id>
+```
 

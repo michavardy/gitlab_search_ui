@@ -1,3 +1,4 @@
+import './index.css';
 import SearchBar from "./SearchBar";
 function App() {
   return (

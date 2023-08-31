@@ -3,6 +3,7 @@ from .gitlabClient import GitlabClient
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware  # Import the CORSMiddleware
+from fastapi.staticfiles import StaticFiles  # Import StaticFiles
 import json
 import re
 import uvicorn
@@ -13,8 +14,11 @@ app = FastAPI()
 # Configure CORS settings
 origins = [
     "http://localhost",
-    "http://localhost:3001",  # Add the URLs of your frontend here
-    # Add more origins if needed
+    "http://localhost:80",
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "*"
 ]
 
 # Add the CORSMiddleware to your app with the configured origins
@@ -32,13 +36,22 @@ class SearchObject(BaseModel):
     branch:str='development'
     script_name_black_list:str
 
+#class SPAStaticFiles(StaticFiles):
+#    async def get_response(self, path: str, scope):
+#        try:
+#            return await super().get_response(path, scope)
+#        except HTTPException as ex:
+#            if ex.status_code == 404:
+#                return await super().get_response("index.html", scope)
+#            else:
+#                raise ex
 
-@app.get("/")
+@app.get("/test")
 def read_root():
     return {"Hello": "World"}
 
 
-@app.post("/search")
+@app.post("/fetch")
 async def search(SearchObject: SearchObject):
     """
     curl -X POST "http://127.0.0.1:8000/search" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"search_prompt\":\"MINIO_PS\",\"script_name_black_list\":[\"pscli\"]}"
@@ -59,6 +72,18 @@ async def search(SearchObject: SearchObject):
     print(search_results)
     return search_results
 
+
+class SPAStaticFiles(StaticFiles):
+    async def get_response(self, path: str, scope):
+        response = await super().get_response(path, scope)
+        if response.status_code == 404:
+            response = await super().get_response('.', scope)
+        return response
+
+# Mount the static files directory (built React files) to the URL path "/"
+app.mount("/", SPAStaticFiles(directory="/app/frontend/build", html=True), name="static")
+
+
 def start():
     """Launched with `poetry run start` at root level"""
-    uvicorn.run("fast.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("backend.main:app", host="0.0.0.0", port=80, reload=True)
