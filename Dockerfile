@@ -16,7 +16,7 @@ RUN npm run build
 # Install and build Python dependencies
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9 as backend-build
 COPY .env ./
-COPY --from=frontend-build /app/frontend/build ./frontend/build  
+COPY --from=frontend-build /app/frontend/build /app/frontend/build
 WORKDIR /app/backend
 COPY backend/requirements.txt ./
 RUN pip install -r requirements.txt
