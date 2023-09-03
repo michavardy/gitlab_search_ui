@@ -1,0 +1,7 @@
+apiVersion: getambassador.io/v2
+kind: Mapping
+metadata:
+    name: build-tos2-package-backend
+spec:
+    prefix: /build-tos2-package/
+    service: build-tos2-package
