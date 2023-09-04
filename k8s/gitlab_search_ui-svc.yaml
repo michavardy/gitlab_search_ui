@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: gitlab_search_ui
+    name: gitlab-search-ui
 spec:
     ports:
     -   name: http
         port: 80
         targetPort: 80
     selector:
-        app: gitlab_search_ui
+        app: gitlab-search-ui

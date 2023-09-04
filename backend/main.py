@@ -46,12 +46,12 @@ class SearchObject(BaseModel):
 #            else:
 #                raise ex
 
-@app.get("/test")
+@app.get("/gitlab_search_ui/test")
 def read_root():
     return {"Hello": "World"}
 
 
-@app.post("/fetch")
+@app.post("/gitlab_search_ui/fetch")
 async def search(SearchObject: SearchObject):
     """
     curl -X POST "http://127.0.0.1:8000/search" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"search_prompt\":\"MINIO_PS\",\"script_name_black_list\":[\"pscli\"]}"
@@ -81,7 +81,7 @@ class SPAStaticFiles(StaticFiles):
         return response
 
 # Mount the static files directory (built React files) to the URL path "/"
-app.mount("/", SPAStaticFiles(directory="/app/frontend/build", html=True), name="static")
+app.mount("/gitlab_search_ui/", SPAStaticFiles(directory="/app/frontend/build", html=True), name="static")
 
 
 def start():

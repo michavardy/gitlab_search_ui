@@ -1,7 +1,7 @@
 apiVersion: getambassador.io/v2
 kind: Mapping
 metadata:
-    name: gitlab_search_ui
+    name: gitlab-search-ui
 spec:
-    prefix: /gitlab_search_ui/
-    service: gitlab_search_ui
+    prefix: /gitlab-search-ui/
+    service: gitlab-search-ui

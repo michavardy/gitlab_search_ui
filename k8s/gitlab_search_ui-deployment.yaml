@@ -1,34 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: gitlab_search_ui
+    name: gitlab-search-ui
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: gitlab_search_ui
+            app: gitlab-search-ui
     strategy:
         type: RollingUpdate
     template:
         metadata:
             labels:
-                app: gitlab_search_ui
+                app: gitlab-search-ui
         spec:
             containers:
-            -   name: gitlab_search_ui
-                image: registry.gitlab.com/tufinps/tos2/gitlab_search_ui
+            -   name: gitlab-search-ui
+                image: registry.gitlab.com/tufinps/tos2/ps_utils/gitlab_search_ui:0.1.1
                 ports:
                 -   containerPort: 80
                 env:
                     - name: TOKEN
                       valueFrom:
                           secretKeyRef:
-                              name: gitlab_search_ui-secret
-                              key: TOKEN
+                              name: build-tos2-package-secret
+                              key: token
                     - name: GROUP
                       value: "8708408"
                     - name: REQUESTS_PER_PAGE
-                      value: 100
+                      value: "100"
             imagePullSecrets:
             - name: registry-credentials
 
