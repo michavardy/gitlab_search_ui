@@ -7,6 +7,7 @@ RUN npm install
 COPY src/ ./src
 COPY tailwind*.js ./
 COPY public/ ./public
+COPY .env ./
 #RUN npm run build-css
 RUN npm run build
 #RUN cp dist/css/* build/static/css/
