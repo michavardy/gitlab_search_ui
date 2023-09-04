@@ -16,7 +16,7 @@ spec:
         spec:
             containers:
             -   name: gitlab-search-ui
-                image: registry.gitlab.com/tufinps/tos2/ps_utils/gitlab_search_ui:0.1.1
+                image: registry.gitlab.com/tufinps/tos2/ps_utils/gitlab_search_ui:0.1.2
                 ports:
                 -   containerPort: 80
                 env:
