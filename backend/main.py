@@ -46,12 +46,12 @@ class SearchObject(BaseModel):
 #            else:
 #                raise ex
 
-@app.get("/gitlab_search_ui/test")
+@app.get("/test")
 def read_root():
     return {"Hello": "World"}
 
 
-@app.post("/gitlab_search_ui/fetch")
+@app.post("/fetch")
 async def search(SearchObject: SearchObject):
     """
     curl -X POST "http://127.0.0.1:8000/search" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"search_prompt\":\"MINIO_PS\",\"script_name_black_list\":[\"pscli\"]}"
