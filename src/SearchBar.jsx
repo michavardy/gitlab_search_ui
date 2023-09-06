@@ -22,7 +22,7 @@ export default function SearchBar() {
         console.log(SearchObject)
         setLoading(true);
         try {
-          const response = await fetch("http://127.0.0.1/fetch", {
+          const response = await fetch(`http://${window.location.host}/gitlab_search_ui/fetch`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

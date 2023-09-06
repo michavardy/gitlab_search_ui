@@ -81,7 +81,7 @@ class SPAStaticFiles(StaticFiles):
         return response
 
 # Mount the static files directory (built React files) to the URL path "/"
-app.mount("/", SPAStaticFiles(directory="/app/frontend/build", html=True), name="static")
+app.mount("/gitlab_search_ui/", SPAStaticFiles(directory="/app/frontend/build", html=True), name="static")
 
 
 def start():
