@@ -22,8 +22,9 @@ export default function SearchBar() {
         console.log(SearchObject)
         setLoading(true);
         try {
-          const response = await fetch(`http://${window.location.host}/fetch`, {
+          const response = await fetch(`http://${window.location.host}/gitlab_search_ui/fetch`, {
             method: "POST",
+            timeout: 600000, // Set the timeout to 10 minutes (600,000 milliseconds)
             headers: {
               "Content-Type": "application/json",
               Accept: "application/json"
