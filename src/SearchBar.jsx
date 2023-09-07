@@ -3,6 +3,21 @@ import SearchIconLoading from "./SearchIconLoading"
 import Table from "./Table"
 import React, { useState, useEffect } from "react";
 
+async function fetchWithTimeout(resource, options = {}) {
+  const { timeout = 8000 } = options;
+  
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+
+  const response = await fetch(resource, {
+    ...options,
+    signal: controller.signal  
+  });
+  clearTimeout(id);
+
+  return response;
+}
+
 export default function SearchBar() {
   const [loading, setLoading] = useState(false);
   const [searchResults, setSearchResults] = useState({})
@@ -22,7 +37,7 @@ export default function SearchBar() {
         console.log(SearchObject)
         setLoading(true);
         try {
-          const response = await fetch(`http://${window.location.host}/gitlab_search_ui/fetch`, {
+          const response = await fetchWithTimeout(`http://${window.location.host}/gitlab_search_ui/fetch`, {
             method: "POST",
             timeout: 600000, // Set the timeout to 10 minutes (600,000 milliseconds)
             headers: {
