@@ -1,9 +1,9 @@
 import './index.css';
-import SearchBar from "./SearchBar";
+import Search from "./Search";
 function App() {
   return (
     <div className="App">
-      <SearchBar/>
+      <Search/>
     </div>
   );
 }
