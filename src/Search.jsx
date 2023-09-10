@@ -9,10 +9,6 @@ function Search() {
     const [searchBranch, setSearchBranch] = useState("")
     const [searchResults, setSearchResults] = useState([])
     useEffect(()=>{
-        console.log('projectData')
-        console.log(projectData)
-        console.log("searchResults")
-        console.log(searchResults)
     },[projectData, searchResults])
     return (
     <div className="App">

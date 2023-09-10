@@ -9,19 +9,21 @@ export default function SearchBar2(props) {
     const { register, handleSubmit} = useForm();
     const { projects, setGroup, searchAllProjects} = useGitlabClient(DefaultGroup);
     useEffect(()=>{setGroup(DefaultGroup)},[setGroup])
+
     const onSubmit = async (data) => {
-        await setGroup(data.group)
-        const results = await searchAllProjects(data.search_prompt, data.branch);
+        console.log('submit button pressed')
+        const results = await searchAllProjects(data.search_prompt, data.branch, data.group);
         props.setSearchBranch(data.branch)
         props.setSearchPrompt(data.search_prompt)
         props.setResults(results) 
         props.setProjectData(projects)
+
       };
   
       return (
         
         <form onSubmit={handleSubmit(onSubmit)} className="">
-            <div className="bg-blue-500 text-white text-center text-2xl font-bold mb-4 p-4">Gitlab Search</div>
+            <div className="text-black text-center text-2xl font-bold mb-4 p-4">Gitlab Search</div>
             <div className="flex justify-around">
                 <div className="flex flex-col items-start">
                 <label htmlFor="search_prompt" className="block text-gray-600">
@@ -53,7 +55,7 @@ export default function SearchBar2(props) {
                     defaultValue="8708408" 
                     {...register("group")} />
                 </div>
-                <button className="bg-green-500 text-white rounded-md p-3 font-bold hover:bg-green-600 active:bg-green-700 focus:ring focus:ring-green-400 w-36 h-12 mt-5">
+                <button className="bg-turq text-white rounded-md p-3 font-bold hover:bg-blue-400 active:bg-green-700 focus:ring focus:ring-green-400 w-36 h-12 mt-5">
                     Search
                 </button>
             </div>

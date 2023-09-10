@@ -151,7 +151,7 @@ export default function Table2(props) {
           />
         </div>
         <button
-          className="bg-green-500 text-white rounded-md p-3 font-bold hover:bg-green-600 active:bg-green-700 focus:ring focus:ring-green-400 w-36 h-12 mt-7"
+          className="bg-turq text-white rounded-md p-3 font-bold hover:bg-blue-400 active:bg-green-700 focus:ring focus:ring-green-400 w-36 h-12 mt-7"
           onClick={handleApplyClick}
         >
           Apply
@@ -176,7 +176,7 @@ export default function Table2(props) {
       <div className="p-2">
         <table className="border-collapse w-full border-2 p-8 rounded-lg shadow-md">
           {/* table - head */}
-          <thead className="bg-blue-500 text-white ">
+          <thead className="bg-turq text-white ">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (

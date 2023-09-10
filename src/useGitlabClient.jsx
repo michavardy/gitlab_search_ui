@@ -3,7 +3,7 @@ import  { useEffect, useState, useMemo } from 'react';
 export default function useGitlabClient(initialGroup){
     const [projects, setProjects] = useState([]);
     const [group, setGroup] = useState(initialGroup)
-    const [loadingStatus, setLoadingStatus] = useState("")
+
     const token = 'glpat-LX_7SxqLyErKBAqyQRA_';
     const base_url = "https://gitlab.com";
     const requests_per_page = 100;
@@ -15,7 +15,6 @@ export default function useGitlabClient(initialGroup){
           }
         async function getProjects(){
             try{
-                setLoadingStatus("Loading")
                 const response = await fetch(
                     `${base_url}/api/v4/groups/${group}/projects?per_page=${requests_per_page}`,
                     {
@@ -39,23 +38,23 @@ export default function useGitlabClient(initialGroup){
             
         }
         getProjects()
-        setLoadingStatus("")
     },[group, token, requests_per_page, project_name_blacklist])
 
-    async function searchAllProjects (search_prompt, branch){
-        setLoadingStatus("Loading")
+    async function searchAllProjects (search_prompt, branch, group){
+        await setGroup(group)
+        
         const searchPromises = projects.map((project)=>{
             return searchProject(project, search_prompt, branch)
         })
         try{
             const searchResults = await Promise.all(searchPromises);
-            setLoadingStatus("")
+            console.log('search results')
+            console.log(searchResults)
             return searchResults
             
         } 
         catch(error){
             console.error("Error searching projects:", error)
-            setLoadingStatus("")
         }
     }
     
@@ -85,6 +84,6 @@ export default function useGitlabClient(initialGroup){
 
 
     return {
-        projects, setGroup, searchAllProjects, loadingStatus
+        projects, setGroup, searchAllProjects,  group
     }
 }
