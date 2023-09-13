@@ -15,28 +15,47 @@ import {
 } from "@tanstack/react-table";
 
 import { useState, useEffect } from "react";
+import Highlight from 'react-highlight';
+import 'highlight.js/styles/github.css'; // Choose a code highlighting theme (e.g., GitHub-style)
 
 const columnHelper = createColumnHelper();
 
 const columns = [
   columnHelper.accessor("Name", {
-    header: () => (<div className="min-w-[300px]">Project Name</div>),
+    header: () => <div className="">Project Name</div>,
+    maxWidth: 400,
     cell: (info) => (
     <div className="flex justify-center font-bold">
         {info.renderValue()}
     </div>),
   }),
   columnHelper.accessor("Use", {
-    header: () => "Use",
-    cell: (info) => info.renderValue(),
+    header: () => <div className="">Use</div>,
+    cell: (info) => {
+      const path = info.row.original.Path;
+      const fileExtension = path.split('.').pop(); // Get the file extension
+
+      return(
+      <div className="prose">
+        <Highlight className={fileExtension}>
+          <div className="">
+            {info.row.original.Use}
+            </div>
+        </Highlight>
+      </div>
+      )
+    },
   }),
   columnHelper.accessor("Path", {
     header: () => "Link",
     cell: (info) => {
       const link = info.row.original.Link;
       return (
-        <a href={link} target="_blank" rel="noopener noreferrer">
-          {info.renderValue()}
+        <a 
+          href={link} 
+          target="_blank" rel="noopener noreferrer"
+          className="text-blue-600 hover:underline link-center-vertical">
+            {info.renderValue()}
         </a>
       );
     },
@@ -197,8 +216,12 @@ export default function Table2(props) {
             {table.getRowModel().rows.map((row) => (
               <tr key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="py-5 px-4 text-left text-black">
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  <td key={cell.id} className="py-5 px-4 text-left text-black cell-max-width">
+                    {
+                    flexRender(
+                      cell.column.columnDef.cell, 
+                      cell.getContext(), 
+                      )}
                   </td>
                 ))}
               </tr>
@@ -222,6 +245,7 @@ export default function Table2(props) {
           {"<"}
         </button>
         <button
+
           className="border rounded p-1"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}

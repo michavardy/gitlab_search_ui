@@ -23,8 +23,8 @@ export default function SearchBar2(props) {
       return (
         
         <form onSubmit={handleSubmit(onSubmit)} className="">
-            <div className="text-black text-center text-2xl font-bold mb-4 p-4">Gitlab Search</div>
-            <div className="flex justify-around">
+            <div className="text-black text-center text-6xl font-bold mb-4 p-4">Gitlab Search</div>
+            <div className="flex justify-evenly">
                 <div className="flex flex-col items-start">
                 <label htmlFor="search_prompt" className="block text-gray-600">
                     Search Prompt:
