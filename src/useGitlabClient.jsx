@@ -4,7 +4,7 @@ export default function useGitlabClient(initialGroup){
     const [projects, setProjects] = useState([]);
     const [group, setGroup] = useState(initialGroup)
 
-    const token = 'glpat-LX_7SxqLyErKBAqyQRA_';
+    const token = 'glpat-MLCWEiLurnzkqHsZ3QJR';
     const base_url = "https://gitlab.com";
     const requests_per_page = 100;
     const project_name_blacklist = useMemo(() => ['test', 'shani', 'daniel', 'tal', 'shay', 'joey', 'project', 'rami', 'demo', 'chris'],[])
